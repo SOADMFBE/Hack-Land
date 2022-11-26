@@ -1,0 +1,11 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block content%}
+
+    {%for group in groups%}
+        {%if group.name == 'expert'%}
+            {%include 'genz/teams-list.html'%}
+        {%endif%}
+    {%endfor%}
+
+{%endblock content%}

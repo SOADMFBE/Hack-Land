@@ -1,0 +1,55 @@
+{%load static%} 
+{%block content%}
+
+<div class="row">
+    <div class="container col-sm">
+        <input
+            class="form-control sticky-md-top"
+            id="listSearch"
+            type="text"
+            placeholder="Type team name"
+        />
+        <br />
+        <ul class="list-group" id="myList">
+            {%for team in teams%}
+            <a   data-mdb-toggle="collapse"
+            href="#{{team}}"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample" class="list-group-item list-group-item-action {{team}}" >{{team}}</a>
+            {%endfor%}
+        </ul>
+    </div>
+    <div class="container col" >
+      {%for team in teams%}
+        <div class="collapse mt-3" id="{{team}}">
+          <h3>{{team}}</h3>
+          <form action="" method="POST">
+            {%csrf_token%}
+            <h4>CheckPoint1</h4>
+            <input type="checkbox" name="cp1" >
+            <input type="text" placeholder="commentary for checkpoint1" name="com1">
+            <br>
+            <h4>CheckPoint2</h4>
+            <input type="checkbox" name="cp2" >
+            <input type="text" placeholder="commentary for checkpoint1" name="com2" >
+            <br>
+            <input type="submit" value="Submit" class="btn">
+          </form>
+        </div>  
+      {%endfor%}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#listSearch').on('keyup', function () {
+            var value = $(this).val().toLowerCase();
+            $('#myList a').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+
+</script>
+{%endblock content%}

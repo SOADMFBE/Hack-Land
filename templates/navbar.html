@@ -1,0 +1,6 @@
+{%load static%}
+<h1>LOGO</h1>
+{%if request.user.is_authenticated%}
+<a href="{%url 'logout' %}">log out</a>
+{%endif%}
+<hr>
